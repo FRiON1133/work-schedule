@@ -1,4 +1,4 @@
-const CACHE = 'schedule-v9';
+const CACHE = 'schedule-v10';
 const ASSETS = [
   './', './index.html', './style.css', './app.js',
   './manifest.json', './icon.svg'
