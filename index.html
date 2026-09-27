@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<title>График работы</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <h1>📅 График работы</h1>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>Параметры графика</h2>
+
+    <div class="grid-2">
+      <label>Месяц
+        <select id="month"></select>
+      </label>
+      <label>Год
+        <input id="year" type="number" min="2020" max="2100" inputmode="numeric">
+      </label>
+    </div>
+
+    <div class="grid-2">
+      <label>Рабочих дней
+        <input id="workDays" type="number" min="1" max="15" value="2" inputmode="numeric">
+      </label>
+      <label>Выходных дней
+        <input id="restDays" type="number" min="1" max="15" value="2" inputmode="numeric">
+      </label>
+    </div>
+
+    <h2>Сотрудники <span id="empCount" class="muted"></span></h2>
+    <ul id="employeesList" class="employees"></ul>
+
+    <div class="row">
+      <input id="newEmployee" type="text" placeholder="ФИО сотрудника" maxlength="60">
+      <button id="addEmployee" class="btn-icon" type="button">+</button>
+    </div>
+  </section>
+
+  <section class="panel actions-panel">
+    <button id="generate" class="btn primary" type="button">Сгенерировать график</button>
+    <button id="exportWord" class="btn" type="button">⬇ Скачать Word</button>
+    <p class="hint">Нажмите на имя или часы в таблице, чтобы заменить или добавить сотрудника.</p>
+  </section>
+
+  <section class="panel" id="schedulePanel" hidden>
+    <h2 id="scheduleMonthTitle" class="schedule-month-title">—</h2>
+    <div id="scheduleWrap" class="schedule-wrap"></div>
+  </section>
+</main>
+
+<!-- Модальное окно выбора / добавления сотрудника -->
+<div id="empModal" class="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-content" role="dialog" aria-modal="true">
+    <h3 id="modalTitle">Кто в этот день?</h3>
+
+    <ul id="modalEmployees" class="modal-employees"></ul>
+
+    <div class="modal-new">
+      <input id="modalNewName" type="text" placeholder="Новое имя сотрудника" maxlength="60">
+      <button id="modalAddName" class="btn primary" type="button">Добавить и назначить</button>
+    </div>
+
+    <button id="modalClose" class="btn" type="button">Отмена</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
